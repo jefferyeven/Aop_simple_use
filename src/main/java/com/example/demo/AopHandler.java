@@ -1,16 +1,13 @@
 package com.example.demo;
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class AopHandler {
 
-    @Pointcut("execution(* com.example.demo.HelloWorldImpl1.*(..))")
+    @Pointcut("execution(* com.example.demo.HelloWorld.*(..))")
     public void test(){
 
     }

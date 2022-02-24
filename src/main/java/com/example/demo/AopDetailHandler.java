@@ -29,6 +29,7 @@ public class AopDetailHandler {
 
     @Around("pointCut2()")
     public Object run1(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        // before
         // 获取方法名
         String methodName = proceedingJoinPoint.getSignature().toString();
         System.out.println("方法名"+methodName);
@@ -40,12 +41,12 @@ public class AopDetailHandler {
         Object result = null;
         try {
             result = proceedingJoinPoint.proceed();//test方法的返回值
+            // after
             System.out.println(result.toString());
         } catch (Exception ex) {
+            // after throwing
             System.out.println(ex.toString());
         }
         return result;
     }
-
-
 }

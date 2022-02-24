@@ -2,14 +2,14 @@ package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+import java.lang.reflect.Proxy;
 
 @SpringBootTest
 class DemoApplicationTests {
     @Autowired
-    HelloWorldImpl1 helloWorldImpl1;
+    HelloWorld helloWorldImpl1;
     @Autowired
     DetailTest detailTest;
     @Test
@@ -24,6 +24,18 @@ class DemoApplicationTests {
     @Test
     void setDetailTest02(){
         System.out.println("返回值: "+detailTest.doPrint("jeffery"));
+    }
+    @Test
+    void testSimple(){
+        SimpleExample simpleExample = new SimpleExample();
+        simpleExample.orinFun("test");
+    }
+    @Test
+    void tesProxy(){
+        SimpleExample simpleExample = new SimpleExample();
+        SExample simpleExampleProxy = (SExample) Proxy.newProxyInstance(SimpleProxy.class.getClassLoader(),
+                new Class<?>[]{SExample.class},new SimpleProxy(simpleExample));
+        simpleExampleProxy.orinFun("test");
     }
 
 }
